@@ -34,9 +34,9 @@ public class TelaTabela  extends javax.swing.JFrame {
 		atomica = at;
 		stringPhi = nome;
         this.date= data; 
-        this.setAlwaysOnTop(true);
-                this.setLocationRelativeTo(this);
-                this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        del.setEnabled(false);
+        this.setLocationRelativeTo(this);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		
         inicializar();
                 gerarTabela();
@@ -111,8 +111,8 @@ public class TelaTabela  extends javax.swing.JFrame {
 
         del.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-                save.setEnabled(false);
-        		areaTxt.setText("");
+                del.setEnabled(false);
+        		//areaTxt.setText("");
                 try{
                     file.delete();
                 }catch(Exception io){
@@ -201,6 +201,7 @@ public class TelaTabela  extends javax.swing.JFrame {
                 }
                 
                 wr.close();
+                del.setEnabled(true);
             }catch(IOException io){
                 io.printStackTrace();
             }
