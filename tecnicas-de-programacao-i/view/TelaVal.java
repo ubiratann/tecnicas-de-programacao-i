@@ -139,7 +139,7 @@ public class TelaVal extends javax.swing.JFrame {
     private void initComponents() {
         cxTxt = new javax.swing.JTextField();
         cxTxt.setToolTipText("");
-        cxTxt.setEnabled(false);
+        cxTxt.setEditable(false);
         btA = new javax.swing.JButton();
         btB = new javax.swing.JButton();
         btC = new javax.swing.JButton();
