@@ -128,7 +128,6 @@ public class TelaTabela  extends javax.swing.JFrame {
         areaTxt.setEditable(false);
         areaTxt.setColumns(20);
         areaTxt.setRows(5);
-        areaTxt.setEnabled(false);
         areaTxt.setPreferredSize(new java.awt.Dimension(353, 230));
         jScrollPane1.setViewportView(areaTxt);
 
