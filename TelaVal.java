@@ -5,7 +5,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.text.BadLocationException;
-
+import java.text.*;
+import java.util.Calendar;
+import java.util.Date;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -227,7 +229,7 @@ public class TelaVal extends javax.swing.JFrame {
         
         
         JPanel options = new JPanel();
-        
+        /*
         options.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -249,7 +251,7 @@ public class TelaVal extends javax.swing.JFrame {
 				}
 				
 			}
-		});
+		});*/
         
         options.setBackground(Color.WHITE);
         
@@ -459,8 +461,11 @@ public class TelaVal extends javax.swing.JFrame {
       
            String phi = cxTxt.getText(); 
            Leitor l = new Leitor(phi);
-        
-           TelaTabela t = new TelaTabela((Conectivo)l.lerFormula(), l.obterAtomicas(), l.stringFormula());
+            String pattern = "yyyy-MM-dd HH:mm:ss.SSS";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+           String date = simpleDateFormat.format(new Date()); 
+           TelaTabela t = new TelaTabela((Conectivo)l.lerFormula(), l.obterAtomicas(), l.stringFormula(), date);
            t.setVisible(true);
  
     }

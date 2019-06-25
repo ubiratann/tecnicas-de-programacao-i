@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.io.*;
+import java.text.*;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import java.awt.event.ActionListener;
@@ -8,7 +9,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import java.util.Calendar;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -23,16 +24,21 @@ public class TelaTabela  extends javax.swing.JFrame {
 	String stringPhi;
 	Formula phi;
 	Atomica[] atomica;
+    String date;
+    File file;
         
-   	TelaTabela (Formula form, Atomica[] at, String nome) {
+   	TelaTabela (Formula form, Atomica[] at, String nome , String data) {
    		setTitle(nome);
 		initComponents();
-                phi = form;
+        phi = form;
 		atomica = at;
 		stringPhi = nome;
+        this.date= data;
+        this.setAlwaysOnTop(true);
                 this.setLocationRelativeTo(this);
                 this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		inicializar();
+		
+        inicializar();
                 gerarTabela();
                 
 	} 
@@ -105,7 +111,13 @@ public class TelaTabela  extends javax.swing.JFrame {
 
         del.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
+                save.setEnabled(false);
         		areaTxt.setText("");
+                try{
+                    file.delete();
+                }catch(Exception io){
+                    io.printStackTrace();
+                }
         	}
         	
         });
@@ -169,28 +181,32 @@ public class TelaTabela  extends javax.swing.JFrame {
     }
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-     //   String data
-        File file = new File("./teste.txt");
-        try{
-            file.createNewFile();
-        }
-        catch(IOException io){
-            io.printStackTrace();
-        }
-        
-        try{
-            FileWriter fw  = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter wr = new BufferedWriter(fw);
-            String str[] = this.areaTxt.getText().split("\\n");
-            for(String linha : str){
-                wr.write(linha+"\n");
+
+        if(!areaTxt.getText().isEmpty()){
+
+            file = new File("./Tabela gerada em "+date+ ".txt");
+            try{
+                file.createNewFile();
+            }
+            catch(IOException io){
+                io.printStackTrace();
             }
             
-            wr.close();
-        }catch(IOException io){
-            io.printStackTrace();
-        }
-        
+            try{
+                FileWriter fw  = new FileWriter(file.getAbsoluteFile());
+                BufferedWriter wr = new BufferedWriter(fw);
+                String str[] = this.areaTxt.getText().split("\\n");
+                for(String linha : str){
+                    wr.write(linha+"\n");
+                }
+                
+                wr.close();
+            }catch(IOException io){
+                io.printStackTrace();
+            }
+        }else{
+                save.setEnabled(false);
+            }
     }
 
     private void voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarActionPerformed
