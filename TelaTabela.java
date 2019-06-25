@@ -33,7 +33,7 @@ public class TelaTabela  extends javax.swing.JFrame {
         phi = form;
 		atomica = at;
 		stringPhi = nome;
-        this.date= data;
+        this.date= data; 
         this.setAlwaysOnTop(true);
                 this.setLocationRelativeTo(this);
                 this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
