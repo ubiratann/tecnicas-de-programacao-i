@@ -3,21 +3,10 @@ import javax.swing.UnsupportedLookAndFeelException;
 import view.*;
 import model.*;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author milton
- */
 public class TrabFinal {
 
-    /**
-     * @param args the command line arguments
-     */
+
 	
 	public static void InterfaceSystem() {
 		try {
@@ -38,6 +27,7 @@ public class TrabFinal {
     	
     	InterfaceSystem(); //Muda a Interface
     	
+	//instancia da view    
     	TelaVal d = new TelaVal();        
         d.setVisible(true);
     }
