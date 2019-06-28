@@ -31,14 +31,16 @@ public class TelaVal extends javax.swing.JFrame {
      * Creates new form TelaVal
      */
     public TelaVal() {
-        initComponents();
-        initalEnabledComponents();
+        initComponents();//metodo que faz a instancia dos componentes usados
+        initalEnabledComponents(); //metodo que seta quais componentes podem ser usados pelo usuario
+                                    // na inicializacao
         this.setTitle("Calculadora de Valora\u00E7\u00F5es L\u00F3gicas");
         this.setResizable(false);
         this.setLocationRelativeTo(this);
     }
 
 
+    //metodo auxiliar que habilita todos os componentes
     private void habilita(){
         setVariaveis(true);
         setConectivos(true);
@@ -48,6 +50,8 @@ public class TelaVal extends javax.swing.JFrame {
         
     }
 
+    //metodo auxiliar que seta quais componentes podem ser usados
+    //após uma variavel atomica ser inserida na caixa de texto
    void setVariaveis(boolean valor){
         pAb.setEnabled(valor);
         btA.setEnabled(valor);
@@ -55,26 +59,28 @@ public class TelaVal extends javax.swing.JFrame {
         btC.setEnabled(valor);
         btD.setEnabled(valor);
         btE.setEnabled(valor);
-        btNeg.setEnabled(valor); 
-  //      System.out.println(verParent());
+        btNeg.setEnabled(valor);
+
+        //verificação para a quantidade de parenteses abertos
+       //e fechados serem igauis
         if(verParent()){
             pFc.setEnabled(false);
             calcular.setEnabled(true);  
         }else
             pFc.setEnabled(true);
     }
-    
+
+    //metodo similar ao metodo setVariaveis, que implementa as restrições para conectivos
     private void setConectivos(boolean valor){
         btAnd.setEnabled(valor);
         btOr.setEnabled(valor);
         btNeg.setEnabled(valor);
         pFc.setEnabled(valor);
         if(verParent())
-            calcular.setEnabled(false);  
-       
-           
+            calcular.setEnabled(false);
     }
-    
+
+    //método que que trata quais botões podem ser usados a partir do ultimo botao usado
     private void tratamento(String tipo){
         String key = tipo;
      
@@ -139,6 +145,7 @@ public class TelaVal extends javax.swing.JFrame {
         pAb.setEnabled(true);
         setConectivos(false);
     }
+
     private void initComponents() {
         cxTxt = new javax.swing.JTextField();
         cxTxt.setToolTipText("");
@@ -232,30 +239,6 @@ public class TelaVal extends javax.swing.JFrame {
         
         
         JPanel options = new JPanel();
-        /*
-        options.addKeyListener(new KeyListener() {
-			
-			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-				if(arg0.getKeyCode() == KeyEvent.VK_ENTER) {
-					System.out.println("TESTESSSS");
-				}
-				
-			}
-		});*/
-        
         options.setBackground(Color.WHITE);
         
         lblFormulaLogica = new JLabel("Fórmulas Lógicas");
@@ -299,13 +282,10 @@ public class TelaVal extends javax.swing.JFrame {
                         btNegActionPerformed(evt);
                     }
                 });
-        
          lblIcone = new JLabel("");
-         lblIcone.setIcon(new ImageIcon(TelaVal.class.getResource("./imagens/logo.png")));
-        
-        
-        
-        //************************************************************    
+    //     lblIcone.setIcon(new ImageIcon(getClass().getResource("/imagens/logo.png")));
+    //icone desabilitado por estar dando erro na criação do .jar
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(options);
         layout.setHorizontalGroup(
@@ -382,8 +362,7 @@ public class TelaVal extends javax.swing.JFrame {
         			.addContainerGap(185, Short.MAX_VALUE))
         );
         
-     
- //************************************************************
+
         
         JPanel mainLayout = new JPanel();
         mainLayout.setLayout(new GridLayout(0, 1, 0, 0));
@@ -393,15 +372,12 @@ public class TelaVal extends javax.swing.JFrame {
         
         mainLayout.add(options);
         getContentPane().add(mainLayout);
-        
-        
-        //************************************************************
 
-        
-        
     
         pack();
     }
+
+    //metodo que verifica se a quantidade de parentesis abertos/fechados na caixa de texto é válida
     private boolean verParent(){
         int contF = 0;
         int contA = 0;
@@ -429,14 +405,13 @@ public class TelaVal extends javax.swing.JFrame {
     private void btAActionPerformed(java.awt.event.ActionEvent evt) {
         cxTxt.setText(cxTxt.getText() + btA.getText());
         tratamento(btA.getText());
-      //  Atomica a  = new Atomica("A");
 
     }
 
     private void btBActionPerformed(java.awt.event.ActionEvent evt) {
         tratamento(btB.getText());
         cxTxt.setText(cxTxt.getText() + btB.getText());
-        //Atomica b = new Atomica("B");
+
 
       
     }
@@ -444,28 +419,27 @@ public class TelaVal extends javax.swing.JFrame {
     private void btCActionPerformed(java.awt.event.ActionEvent evt) {
         cxTxt.setText(cxTxt.getText() + btC.getText());
         tratamento(btC.getText());
-        //Atomica c = new Atomica("C");
       
     }
 
     private void btDActionPerformed(java.awt.event.ActionEvent evt) {
         cxTxt.setText(cxTxt.getText() + btD.getText());
         tratamento(btD.getText());
-      
     }
 
     private void btEActionPerformed(java.awt.event.ActionEvent evt) {
         cxTxt.setText(cxTxt.getText() + btE.getText());
-        tratamento(btE.getText());        
-       
+        tratamento(btE.getText());
     }
 
+
+    //instancia do frame TelaTabela
     private void calcularActionPerformed(java.awt.event.ActionEvent evt) {
       
            String phi = cxTxt.getText(); 
            Leitor l = new Leitor(phi);
-            String pattern = "yyyy-MM-dd HH:mm:ss.SSS";
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+           String pattern = "yyyy-MM-dd HH:mm:ss.SSS";
+           SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
            String date = simpleDateFormat.format(new Date()); 
            TelaTabela t = new TelaTabela(l.lerFormula(), l.obterAtomicas(), l.stringFormula(), date);
@@ -491,16 +465,13 @@ public class TelaVal extends javax.swing.JFrame {
           
     }
 
-    private void pFcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pFcActionPerformed
-       
+    private void pFcActionPerformed(java.awt.event.ActionEvent evt) {
+
        cxTxt.setText(cxTxt.getText() + pFc.getText());
        tratamento(pFc.getText());
     }
 
-    private void cxTxtKeyTyped(java.awt.event.KeyEvent evt) {
-        
-    }
-    
+
    
     private javax.swing.JButton btA;
     private javax.swing.JButton btAnd;

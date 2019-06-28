@@ -13,48 +13,42 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author ubiratan
- */
 public class TelaTabela  extends javax.swing.JFrame {
-	String stringPhi;
+	String stringPhi; //
 	Formula phi;
 	Atomica[] atomica;
     String date;
-    File file;
+    File file; //arquivo declarado como universal para que as classes consigam
+                // criar e excluir sempre a mesma instância de arquivo
         
    	public TelaTabela (Formula form, Atomica[] at, String nome , String data) {
    		setTitle(nome);
-		initComponents();
-        phi = form;
-		atomica = at;
-		stringPhi = nome;
-        this.date= data; 
-        del.setEnabled(false);
-        this.setLocationRelativeTo(this);
-        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		initComponents(); //metodo que faz a instancia de todos o componentes da interface gráfica
+        phi = form; //formula recebida pelo leitor
+		atomica = at; //conjunto de formulas atômicas
+		stringPhi = nome; //
+        this.date= data; //data que vai para o nome do arquivo
+        del.setEnabled(false); //botao del só é habilitado se salvar o arquivo antes
+        this.setLocationRelativeTo(this); //posicao da janela
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);//a janela apenas some sem encerrar o aplicativo
 		
         inicializar();
-                gerarTabela();
+        gerarTabela();
                 
 	} 
 	
 	void inicializar() {
-		if (atomica != null) for (int i = 0; i < atomica.length; i++) atomica[i].escolherBitPos(i); // a posicao da prop at no array corresponde a sua pos no num bin
+		if (atomica != null) for (int i = 0; i < atomica.length; i++) atomica[i].escolherBitPos(i);
+		// a posicao da prop at no array corresponde a sua pos no num bin
 	}
 
 	void mostrarCabecalho() {
 		if (atomica != null)
 		{
        
-			for (int i = atomica.length-1; i >= 0; i--) areaTxt.setText( areaTxt.getText()+atomica[i]+"\t"); // 0 corresponde ao LBS (menos sig); atomica.length-1 ao MBS (mais sig)
+			for (int i = atomica.length-1; i >= 0; i--) areaTxt.setText( areaTxt.getText()+atomica[i]+"\t");
+			// 0 corresponde ao LSB (menos sig); atomica.length-1 ao MSB (mais sig)
 			areaTxt.setText(areaTxt.getText() + stringPhi + "\n");
 		}
 	}
@@ -69,14 +63,16 @@ public class TelaTabela  extends javax.swing.JFrame {
 	}
 
 	void incrementarValoresAt() {
-		if (atomica != null) for (Atomica prop : atomica) prop.incrementar(); // incrementa o contador das prop at, uma por uma
+		if (atomica != null) for (Atomica prop : atomica) prop.incrementar();
+		// incrementa o contador das prop at, uma por uma
 	}
 
 	void verificarValoresAt() {
 		if (atomica != null)
 			for (Atomica prop : atomica)
 			{
-				if (prop.obterContador() == prop.obterContMax()) // troca os valores das prop at cujo esteja com o contador no limite
+				if (prop.obterContador() == prop.obterContMax())
+				    // troca os valores das prop at cujo esteja com o contador no limite
 				{
 					prop.zerarCont();
 					prop.trocarValor();
@@ -88,7 +84,8 @@ public class TelaTabela  extends javax.swing.JFrame {
 		int linha, qtdTotalLinhas;
 			
 		linha = 1;
-		qtdTotalLinhas = 2 * atomica[ atomica.length-1 ].obterContMax(); // o total de linhas da tab verd corresponde a 2 elevado a pos do MSB;
+		qtdTotalLinhas = 2 * atomica[ atomica.length-1 ].obterContMax();
+		// o total de linhas da tab verd corresponde a 2 elevado a pos do MSB;
 		
 		mostrarCabecalho();
 
@@ -106,16 +103,19 @@ public class TelaTabela  extends javax.swing.JFrame {
     
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        areaTxt = new javax.swing.JTextArea();
-        save = new javax.swing.JButton();
-        del = new javax.swing.JButton();
-        voltar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane(); //painel onde ficam os componentes
+        areaTxt = new javax.swing.JTextArea(); //area de texto que a tabela vai aparecer
+        save = new javax.swing.JButton(); //botao de salvar
+        del = new javax.swing.JButton(); //botao deletar
+        voltar = new javax.swing.JButton(); //botao voltar
 
+
+        del.setText("Excluir Tabela");
+        //evento de deletar arquivo de tabela já gerada
         del.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
                 del.setEnabled(false);
-        		//areaTxt.setText("");
+
                 try{
                     file.delete();
                 }catch(Exception io){
@@ -134,6 +134,7 @@ public class TelaTabela  extends javax.swing.JFrame {
         areaTxt.setPreferredSize(new java.awt.Dimension(353, 230));
         jScrollPane1.setViewportView(areaTxt);
 
+        //evento que chama o metodo de salvar um arquivo
         save.setText("Salvar Tabela");
         save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,8 +142,7 @@ public class TelaTabela  extends javax.swing.JFrame {
             }
         });
 
-        del.setText("Excluir Tabela");
-
+        //evento que chama o metodo de voltar para a calculadora
         voltar.setText("voltar");
         voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,6 +182,7 @@ public class TelaTabela  extends javax.swing.JFrame {
         pack();
     }
 
+    //clase que cria e salva um arquivo com a data em que a tabela foi gerada
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
 
         if(!areaTxt.getText().isEmpty()){
@@ -193,14 +194,15 @@ public class TelaTabela  extends javax.swing.JFrame {
             catch(IOException io){
                 io.printStackTrace();
             }
-            
+                //tratamento para criacao do arquivo
             try{
                 FileWriter fw  = new FileWriter(file.getAbsoluteFile());
                 BufferedWriter wr = new BufferedWriter(fw);
                 String str[] = this.areaTxt.getText().split("\\n");
+
                 for(String linha : str){
                     wr.write(linha+"\n");
-                }
+                } //escrevendo linhas da tabela mostrada no arquivo
                 
                 wr.close();
                 del.setEnabled(true);
