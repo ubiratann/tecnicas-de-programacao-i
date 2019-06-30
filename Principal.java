@@ -4,7 +4,7 @@ import view.*;
 import model.*;
 
 
-public class TrabFinal {
+public class Principal {
 
 
 	
