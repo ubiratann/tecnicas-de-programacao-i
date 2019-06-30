@@ -15,7 +15,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 
 public class TelaTabela  extends javax.swing.JFrame {
-	String stringPhi; //
+	String stringPhi;
 	Formula phi;
 	Atomica[] atomica;
     String date;
@@ -143,7 +143,7 @@ public class TelaTabela  extends javax.swing.JFrame {
         });
 
         //evento que chama o metodo de voltar para a calculadora
-        voltar.setText("voltar");
+        voltar.setText("Voltar");
         voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 voltarActionPerformed(evt);

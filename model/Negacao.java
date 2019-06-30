@@ -7,4 +7,8 @@ public class Negacao extends Conectivo {
 	public boolean obterValor() {
 		return !obterFilho(0).obterValor(); 
 	}
+	@Override
+	public String toString() {
+		return "("+esquerdo+")"+sinal;
+	}
 }

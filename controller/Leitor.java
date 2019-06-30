@@ -105,15 +105,9 @@ public class Leitor {
 			}
 	        	
 			// desempilhamos, e "concatenamos" os elementos da pilha,  caso necessario
-	        	if ( p.readyUnary() ) {
-	        		p.reduceStackUnary();
-	        		p.top();
-		        }
+			if ( p.readyUnary() ) p.reduceStackUnary(); 
 			
-			if ( p.readyBinary() ) {
-				p.reduceStackBinary();
-		        	p.top();
-			}
+			if ( p.readyBinary() ) p.reduceStackBinary(); 
 		}
 		
 		return p.pop(); // desempilha. obs: sera do tipo Conectivo e apos isso a pilha ficara vazia
@@ -143,18 +137,10 @@ public class Leitor {
 				}
 			}
 	        
-			if ( p.readyUnary() ) {
-				p.reduceStackUnary();
-				p.top();
-			}
+			if ( p.readyUnary() ) p.reduceStackUnary(); 
 			
-			if ( p.readyBinary() ) {
-				p.reduceStackBinary();
-		        	p.top();
-			}
+			if ( p.readyBinary() ) p.reduceStackBinary(); 
 		}
-
-		p.top();
 
 		return p.pop();
 	}

@@ -5,8 +5,6 @@ import model.*;
 
 
 public class Principal {
-
-
 	
 	public static void InterfaceSystem() {
 		try {
@@ -27,7 +25,7 @@ public class Principal {
     	
     	InterfaceSystem(); //Muda a Interface
     	
-	//instancia da view    
+		//instancia da view    
     	TelaVal d = new TelaVal();        
         d.setVisible(true);
     }

@@ -60,10 +60,8 @@ public abstract class Conectivo extends Formula {
 	public String obterExpressao() {
 		return esquerdo+sinal+direito;
 	}
-
+	@Override
 	public String toString() {
 		return esquerdo+sinal+direito;
 	}
-        
-       
 }
