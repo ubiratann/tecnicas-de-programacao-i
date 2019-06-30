@@ -471,7 +471,9 @@ public class TelaVal extends javax.swing.JFrame {
        tratamento(pFc.getText());
     }
 
-
+    private void cxTxtKeyTyped(java.awt.event.KeyEvent evt) {
+        
+    }
    
     private javax.swing.JButton btA;
     private javax.swing.JButton btAnd;
