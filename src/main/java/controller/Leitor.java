@@ -69,7 +69,7 @@ public class Leitor {
 
 	// retorna o indice di fim da subformula da qual queremos computar, isto é,
 	// indice de um ' (negação) ou de um ) (parenteses)
-	int fimSubForm(String[] phi, int ini) {
+	public int fimSubFormula(String[] phi, int ini) {
 		int i, qtdParentesis = 0;
 
 		for (i = ini; i < phi.length; ++i) {
@@ -100,7 +100,7 @@ public class Leitor {
 
 		for (i = 0; i < arrayPsi.length; i++) {
 			if (arrayPsi[i].equals("(")) {
-				f = fimSubForm(arrayPsi, i); // retorna o indice que termina a subformula ou a formula da negação
+				f = fimSubFormula(arrayPsi, i); // retorna o indice que termina a subformula ou a formula da negação
 
 				p.push(lerSubFormula(++i, f)); // lemos o que está dentro dos parênteses, e ao fim, empilhamos
 
@@ -133,7 +133,7 @@ public class Leitor {
 
 		for (i = ini; i <= fim; i++) {
 			if (arrayPsi[i].equals("(")) {
-				f = fimSubForm(arrayPsi, i);
+				f = fimSubFormula(arrayPsi, i);
 
 				p.push(lerSubFormula(++i, f));
 
