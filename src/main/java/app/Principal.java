@@ -3,7 +3,7 @@ package app;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import view.TelaVal;
+import view.TelaCalculadora;
 
 
 public class Principal {
@@ -28,8 +28,8 @@ public class Principal {
     	InterfaceSystem(); //Muda a Interface
     	
 		//instancia da view    
-    	TelaVal d = new TelaVal();        
-        d.setVisible(true);
+    	TelaCalculadora calculadora = new TelaCalculadora();        
+    	calculadora.setVisible(true);
     }
     
 }

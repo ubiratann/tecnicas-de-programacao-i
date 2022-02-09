@@ -1,36 +1,28 @@
 package view;
-import controller.*;
-import model.*;
-import controller.*;
-import java.util.ArrayList;
-import javax.swing.JButton;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.GroupLayout;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.text.BadLocationException;
-import java.text.*;
-import java.util.Calendar;
-import java.util.Date;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.ImageIcon;
-import java.awt.FlowLayout;
-import java.awt.BorderLayout;
-import java.awt.Component;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.text.BadLocationException;
+
+import controller.Leitor;
 
  
-public class TelaVal extends javax.swing.JFrame {
+public class TelaCalculadora extends javax.swing.JFrame {
     
     /**
      * Creates new form TelaVal
      */
-    public TelaVal() {
+    public TelaCalculadora() {
         initComponents();//metodo que faz a instancia dos componentes usados
         initalEnabledComponents(); //metodo que seta quais componentes podem ser usados pelo usuario
                                     // na inicializacao

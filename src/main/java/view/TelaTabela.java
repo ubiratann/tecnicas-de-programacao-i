@@ -1,17 +1,19 @@
 package view;
 
-import model.*;
-import controller.*;
-import java.util.ArrayList;
-import java.io.*;
-import java.text.*;
-import javax.swing.SwingConstants;
-import javax.swing.WindowConstants;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.GroupLayout.Alignment;
+import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.WindowConstants;
+
+import model.Atomica;
+import model.Formula;
 
 
 public class TelaTabela  extends javax.swing.JFrame {
