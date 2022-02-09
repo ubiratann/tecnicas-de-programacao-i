@@ -434,7 +434,7 @@ public class TelaCalculadora extends javax.swing.JFrame {
            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
            String date = simpleDateFormat.format(new Date()); 
-           TelaTabela t = new TelaTabela(l.lerFormula(), l.obterAtomicas(), l.stringFormula(), date);
+           TelaTabela t = new TelaTabela(l.lerFormula(), l.getArrayAtomicas(), l.getStringPsi(), date);
            t.setVisible(true);
  
     }
