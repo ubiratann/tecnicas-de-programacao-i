@@ -102,7 +102,7 @@ public class Leitor {
 			if (arrayPsi[i].equals("(")) {
 				f = fimSubForm(arrayPsi, i); // retorna o indice que termina a subformula ou a formula da negação
 
-				p.push(lerFormula(++i, f)); // lemos o que está dentro dos parênteses, e ao fim, empilhamos
+				p.push(lerSubFormula(++i, f)); // lemos o que está dentro dos parênteses, e ao fim, empilhamos
 
 				i = f; // indice pula para o fim da formula lida no comando acima
 			} else {
@@ -125,8 +125,8 @@ public class Leitor {
 		return p.pop(); // desempilha. obs: sera do tipo Conectivo e apos isso a pilha ficara vazia
 	}
 
-	// fazemos sobrecarga do método para lermos pedaços da expressão entrada
-	public Formula lerFormula(int ini, int fim) {
+
+	private Formula lerSubFormula(int ini, int fim) {
 		int i, f;
 		Formula aux;
 		Pilha p = new Pilha();
@@ -135,7 +135,7 @@ public class Leitor {
 			if (arrayPsi[i].equals("(")) {
 				f = fimSubForm(arrayPsi, i);
 
-				p.push(lerFormula(++i, f));
+				p.push(lerSubFormula(++i, f));
 
 				i = f;
 			} else {
