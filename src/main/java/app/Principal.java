@@ -1,7 +1,9 @@
+package app;
+
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import view.*;
-import model.*;
+
+import view.TelaVal;
 
 
 public class Principal {

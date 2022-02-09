@@ -1,7 +1,13 @@
 package controller;
 
-import model.*;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
+
+import model.Atomica;
+import model.Conjuncao;
+import model.Disjuncao;
+import model.Formula;
+import model.Negacao;
 
 public class Leitor {
 	String stringPsi; // formula entrada em String
