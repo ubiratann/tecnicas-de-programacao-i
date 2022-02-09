@@ -1,8 +1,5 @@
 package controller;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import model.Atomica;
 import model.Conjuncao;
 import model.Disjuncao;
@@ -10,166 +7,188 @@ import model.Formula;
 import model.Negacao;
 
 public class Leitor {
-	String stringPsi; // formula entrada em String
-	String[] psi; // aray de String
-	Atomica[] atomicas; // nos folhas do composite
 
-	public Leitor(String form) {
-		stringPsi = form.toUpperCase(); // por padrao, temos toda a expressao em maiuscula
-		psi = form.toUpperCase().split(""); // quebramos a String entrada em array de String
-		atomicas = new Atomica[qtdAtomicas()]; // iniciamos o array das Atomicas que contera os nos folhos do composite
-	}
+	private String stringPsi; // formula entrada em String
+	private String[] arrayPsi; // array de String
+	private Atomica[] arrayAtomicas; // nos folhas do composite
+
 	
-	public Formula criarForm(String phi) {
+	/*
+	 * Criamos um leitor que contém a String da formula que é recebida na interface gráfica da calculadora
+	 * e apos isso geramos 2 arrays, um com todos os caracteres da fórmula e outro com
+	 * de Atomicas com base na quantidade de caracterese de formulas atomicas que existem no arrayPsi
+	 */
+	
+	public Leitor(String form) {
+		stringPsi = form.toUpperCase();
+		arrayPsi = form.toUpperCase().split("");
+		arrayAtomicas = new Atomica[getQuantidadeAtomicas(arrayPsi)]; 
+	}
+
+	
+	/* 
+	 * O método criarFormulas usa a estratégia de notação polonesa para gerar as fórmulas de uma string
+	 * 
+	 * */
+	public Formula criarFormulas(String phi) {
 		Formula aux;
-	    
-	    if (phi.compareTo("A") == 0 || phi.compareTo("B") == 0 || phi.compareTo("C") == 0 || phi.compareTo("D") == 0 || phi.compareTo("E") == 0) 
-		{
+		if (phi.matches("[A-E]")) {
 			aux = new Atomica(phi);
-			// adicionamos de trás para frente pois os primeiros lidos (processamos da esquerda a direita) são mais significativos
-			for (int i = atomicas.length-1; i >= 0; --i)
-			{
-				if (atomicas[i] == null)
-				{
-					atomicas[i] = (Atomica)aux; // adiciona a posição seja que e null
-					return atomicas[i];
+			for (int i = arrayAtomicas.length - 1; i >= 0; --i) {
+				if (arrayAtomicas[i] == null) {
+					arrayAtomicas[i] = (Atomica) aux; 
+					return arrayAtomicas[i];
 				} else {
-					// verificamos se a String não tem o mesmo nome que uma Atomica antes criada
-					if (atomicas[i].getNome().compareTo(phi) == 0) {
-						return atomicas[i]; // se sim, não precisamos adiciona-la,pois caso contrario seria tratato como Atomicas distintas
+					if (arrayAtomicas[i].getNome().equals(phi)) {
+						return arrayAtomicas[i];
 					}
 				}
 			}
+		} else { 
+			switch (phi) {
+			case ".":
+				aux = new Conjuncao(null, phi, null);
+				break;
+
+			case "+":
+				aux = new Disjuncao(null, phi, null);
+				break;
+
+			case "'":
+				aux = new Negacao(null, phi);
+				break;
+
+			default:
+				aux = null;
+				break;
+			}
 		}
-		else { // se nao for atomica, e conectivo ou parentese fechado ")"
-			switch(phi) {
-				case ".":
-		    		aux = new Conjuncao(null, phi, null);
-		    		break;
-		    	
-		    	case "+":
-		    		aux = new Disjuncao(null, phi, null);
-		    		break;
-		    	
-		    	case "'":
-		    		aux = new Negacao(null,phi);
-		    		break;
-		    	
-		    	default:
-		    		aux = null; // obs: a entrada dos dados e tratada no inicio do programa, aux nao sera null
-		    		break;
-		    }
-		}
-		
-	    return aux;
+
+		return aux;
 	}
-	// retorna o indice di fim da subformula da qual queremos computar, isto é, indice de um ' (negação) ou de um ) (parenteses)
+
+	// retorna o indice di fim da subformula da qual queremos computar, isto é,
+	// indice de um ' (negação) ou de um ) (parenteses)
 	int fimSubForm(String[] phi, int ini) {
 		int i, qtdParentesis = 0;
 
-		for (i = ini; i < phi.length; ++i)
-		{
-			if ( phi[i].compareTo("(") == 0 ) ++qtdParentesis;
-			
-			if ( phi[i].compareTo(")") == 0 )
-			{
+		for (i = ini; i < phi.length; ++i) {
+			if (phi[i].equals("("))
+				++qtdParentesis;
+
+			if (phi[i].equals(")")) {
 				--qtdParentesis;
-				
-				if ( qtdParentesis == 0 ) // qtdParenteses igual a 0 significa que os parenteses foram abertos e fechados corretamente
+
+				if (qtdParentesis == 0) // qtdParenteses igual a 0 significa que os parenteses foram abertos e fechados
+										// corretamente
 				{
-					if ( i < phi.length-1 && phi[i+1].compareTo("'") == 0 ) return i+1; // obs: para negar a proposicao é necessario por entre parenteses. nesse caso, retornamos o indice de '
+					if (i < phi.length - 1 && phi[i + 1].equals("'"))
+						return i + 1; // obs: para negar a proposicao é necessario por entre parenteses. nesse caso,
+										// retornamos o indice de '
 					return i; // indice de )
 				}
 			}
 		}
 
-		return 0; //obs: a entrada dos dados e tratada no inicio do programa
+		return 0; // obs: a entrada dos dados e tratada no inicio do programa
 	}
-	
+
 	public Formula lerFormula() {
 		int i, f;
 		Formula aux;
 		Pilha p = new Pilha();
 
-		for (i = 0; i < psi.length; i++) 
-		{
-			if ( psi[i].compareTo("(") == 0 ) 
-			{
-				f = fimSubForm(psi, i); // retorna o indice que termina a subformula ou a formula da negação
-				
+		for (i = 0; i < arrayPsi.length; i++) {
+			if (arrayPsi[i].equals("(")) {
+				f = fimSubForm(arrayPsi, i); // retorna o indice que termina a subformula ou a formula da negação
+
 				p.push(lerFormula(++i, f)); // lemos o que está dentro dos parênteses, e ao fim, empilhamos
 
 				i = f; // indice pula para o fim da formula lida no comando acima
-			} 
-			else 
-			{
-				// obs: nosso programa ignora quando encontramos ). Os parênteses são apenas marcações.
-				if (psi[i].compareTo(")") != 0) {
-					aux = criarForm( psi[i] ); // cria uma formula atômica ou um conectivo
+			} else {
+				// obs: nosso programa ignora quando encontramos ). Os parênteses são apenas
+				// marcações.
+				if (!arrayPsi[i].equals(")")) {
+					aux = criarFormulas(arrayPsi[i]); // cria uma formula atômica ou um conectivo
 					p.push(aux); // empilha o objetivo criado
 				}
 			}
-	        	
-			// desempilhamos, e "concatenamos" os elementos da pilha,  caso necessario
-			if ( p.readyUnary() ) p.reduceStackUnary(); 
-			
-			if ( p.readyBinary() ) p.reduceStackBinary(); 
+
+			// desempilhamos, e "concatenamos" os elementos da pilha, caso necessario
+			if (p.readyUnary())
+				p.reduceStackUnary();
+
+			if (p.readyBinary())
+				p.reduceStackBinary();
 		}
-		
+
 		return p.pop(); // desempilha. obs: sera do tipo Conectivo e apos isso a pilha ficara vazia
 	}
-	
+
 	// fazemos sobrecarga do método para lermos pedaços da expressão entrada
 	public Formula lerFormula(int ini, int fim) {
 		int i, f;
 		Formula aux;
 		Pilha p = new Pilha();
 
-		for (i = ini; i <= fim; i++)
-		{
-			if ( psi[i].compareTo("(") == 0 ) 
-			{
-				f = fimSubForm(psi, i);
-				
+		for (i = ini; i <= fim; i++) {
+			if (arrayPsi[i].equals("(")) {
+				f = fimSubForm(arrayPsi, i);
+
 				p.push(lerFormula(++i, f));
 
 				i = f;
-			} 
-			else 
-			{
-				if (psi[i].compareTo(")") != 0) {
-					aux = criarForm( psi[i] );
+			} else {
+				if (!arrayPsi[i].equals(")")) {
+					aux = criarFormulas(arrayPsi[i]);
 					p.push(aux);
 				}
 			}
-	        
-			if ( p.readyUnary() ) p.reduceStackUnary(); 
-			
-			if ( p.readyBinary() ) p.reduceStackBinary(); 
+
+			if (p.readyUnary())
+				p.reduceStackUnary();
+
+			if (p.readyBinary())
+				p.reduceStackBinary();
 		}
 
 		return p.pop();
 	}
-	// retorna a String processada pela classe
-	public String stringFormula() {
+	
+	private int getQuantidadeAtomicas(String[] array) {
+		int contador = 0;
+		
+		if(array != null && array.length > 0) {
+			for(String atomica : array) {
+				if(atomica.matches("[A-E]")) contador++;
+			}			
+		}
+		
+		return contador;
+	}
+
+	public String getStringPsi() {
 		return stringPsi;
 	}
-	// retorna a quantidade exata de atomicas contida na nossa expressão
-	public int qtdAtomicas() {
-		if (psi != null) {
-			Set set = new HashSet(); // usamos Set para que não haja duplicação
 
-			for (String c : psi) 
-				if (c.compareTo("A") == 0 || c.compareTo("B") == 0 || c.compareTo("C") == 0 || c.compareTo("D") == 0 || c.compareTo("E") == 0) 
-					set.add(c); // add as atomicas a set, caso ela não exista na coleção
-
-			if (set.size() != 0) return set.size(); // o número de atômicas é igual ao tamanho da coleção
-		}
-
-		return 0; // caso a String entrada seja nula
+	public void setStringPsi(String stringPsi) {
+		this.stringPsi = stringPsi;
 	}
 
-	public Atomica[] obterAtomicas() {
-		return atomicas; // retorna o as atomicas que foram criadas após o método lerForm()
+	public String[] getArrayPsi() {
+		return arrayPsi;
 	}
+
+	public void setArrayPsi(String[] arrayPsi) {
+		this.arrayPsi = arrayPsi;
+	}
+
+	public Atomica[] getArrayAtomicas() {
+		return arrayAtomicas;
+	}
+
+	public void setArrayAtomicas(Atomica[] arrayAtomicas) {
+		this.arrayAtomicas = arrayAtomicas;
+	}
+
 }
