@@ -7,7 +7,7 @@
 
 ## Descrição
 
-Este é um projeto que simula uma calculadora de fórmulas lógicas, onde a princípio, o usuário insere uma fórmula usando variáveis pré-definidas e então o software calcula a tabela veradade da expressão que foi inserida.
+Este é um projeto que simula uma calculadora de fórmulas lógicas, onde a princípio o usuário insere uma fórmula usando variáveis pré-definidas e então o software calcula a tabela veradade da expressão que foi inserida.
 
 ## Uso
 
