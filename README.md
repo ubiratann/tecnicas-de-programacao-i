@@ -1,8 +1,6 @@
 # Calculadora de Fórmulas lógicas
 
-https://img.shields.io/github/workflow/status/ubiratann/tecnicas-de-programacao-i/Java%20CI%20with%20Maven
-
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ubiratann/tecnicas-de-programacao-i/Java\ CI%20with%20Maven)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ubiratann/tecnicas-de-programacao-i/Java%20CI%20with%20Maven)
 ![GitHub issues](https://img.shields.io/github/issues-raw/ubiratann/tecnicas-de-programacao-i)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/ubiratann/tecnicas-de-programacao-i?color=purple)
 
