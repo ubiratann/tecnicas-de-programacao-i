@@ -15,9 +15,10 @@ public abstract class Conectivo extends Formula {
 		this.sinal = sinal;
 	}
 
-	public abstract boolean obterValor();
+	@Override
+	public abstract boolean getValor();
 
-	// segue a ideia de adicionar à direita do sinal
+	@Override
 	public void add(Formula a) {
 		if (esquerdo == null) {
 			esquerdo = a;
@@ -32,6 +33,7 @@ public abstract class Conectivo extends Formula {
 		direito = b;
 	}
 
+	@Override
 	public void remove(Formula a) {
 		if (esquerdo == a) {
 			esquerdo = null;
@@ -44,24 +46,32 @@ public abstract class Conectivo extends Formula {
 		}
 	}
 
-	// como é um arvore binaria, 0 para o filho esquerdo e 1 para o filho direito
-	public Formula obterFilho(int index) {
-		if (index == 0) {
-			return esquerdo;
-		}
-		else if (index == 1) {
-			return direito;
-		}
-		else {
-			return null;
-		}
-	}
-
 	public String obterExpressao() {
 		return esquerdo+sinal+direito;
 	}
+	
 	@Override
 	public String toString() {
 		return esquerdo+sinal+direito;
 	}
+
+	public String getSinal() {
+		return sinal;
+	}
+
+	public void setSinal(String sinal) {
+		this.sinal = sinal;
+	}
+	
+	@Override
+	public Formula getEsquerdo() {
+		return esquerdo;
+	}
+
+	@Override
+	public Formula getDireito() {
+		return direito;
+	}
+
+	
 }

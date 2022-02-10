@@ -29,7 +29,7 @@ public class DisjuncaoTest {
 		B.trocarValor();
 		
 		Disjuncao disjuncao = new Disjuncao(A, "+", B);
-		assertEquals(disjuncao.obterValor(), true);
+		assertEquals(true, disjuncao.getValor());
 	}
 	
 	@Test
@@ -37,12 +37,12 @@ public class DisjuncaoTest {
 		A.trocarValor();
 		
 		Disjuncao disjuncao = new Disjuncao(A, "+", B);
-		assertEquals(disjuncao.obterValor(), true);
+		assertEquals(true, disjuncao.getValor());
 	}
 	
 	@Test
 	void testValorDisjuncaoFF() {
 		Disjuncao disjuncao = new Disjuncao(A, "+", B);
-		assertEquals(disjuncao.obterValor(), false);
+		assertEquals(false, disjuncao.getValor());
 	}
 }

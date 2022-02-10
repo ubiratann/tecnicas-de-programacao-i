@@ -1,14 +1,16 @@
 package model;
+
 public interface Binario {
+
 	void escolherBitPos(int i);
 
-	void incrementar();
+	void incrementarContador();
 
-	void zerarCont();
+	void zerarContador();
 	
-	int obterContador();
+	int getContador();
 
-	int obterContMax();
+	int getContadorMax();
 
 	void trocarValor();
 }

@@ -5,9 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import model.Atomica;
-import model.Conectivo;
-import model.Conjuncao;
-import model.Disjuncao;
 import model.Formula;
 
 public class LeitorTest {
@@ -15,7 +12,7 @@ public class LeitorTest {
     @Test
     void testCriarFormulaAtomica() {
 	Formula formulaAtomica = new Atomica("A");
-	assertEquals(false, formulaAtomica.obterValor());
+	assertEquals(false, formulaAtomica.getValor());
     }
     
 

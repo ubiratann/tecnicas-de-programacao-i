@@ -29,7 +29,7 @@ public class ConjuncaoTest {
 		B.trocarValor();
 		
 		Conjuncao conjuncao = new Conjuncao(A, ".", B);
-		assertEquals(conjuncao.obterValor(), true);
+		assertEquals(conjuncao.getValor(), true);
 	}
 	
 	@Test
@@ -37,13 +37,13 @@ public class ConjuncaoTest {
 		A.trocarValor();
 		
 		Conjuncao conjuncao = new Conjuncao(A, ".", B);
-		assertEquals(conjuncao.obterValor(), false);
+		assertEquals(conjuncao.getValor(), false);
 	}
 
 	@Test
 	void testValorConjuncaoFF() {
 		Conjuncao conjuncao = new Conjuncao(A, ".", B);
-		assertEquals(conjuncao.obterValor(), false);
+		assertEquals(conjuncao.getValor(), false);
 	}
 	
 
