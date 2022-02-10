@@ -10,7 +10,7 @@ import model.Conjuncao;
 import model.Disjuncao;
 import model.Formula;
 
-class LeitorTest {
+public class LeitorTest {
 
     @Test
     void testCriarFormulaAtomica() {
