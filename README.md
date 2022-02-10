@@ -20,7 +20,7 @@ Este é um projeto que simula uma calculadora de fórmulas lógicas, onde a prin
 Para buildar o projeto basta executar o seguinte comando na pasta raiz do projeto:
 
 ```bash
-mvn build
+mvn package
 ```
 
 ### Execução
