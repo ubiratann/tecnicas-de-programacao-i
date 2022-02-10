@@ -13,7 +13,7 @@ Este é um projeto que simula uma calculadora de fórmulas lógicas, onde a prin
 
 - Dependências:
 	1. JRE 1.8
-	1. Maven 5
+	1. Maven 3
 
 ### Build com Testes
 	
