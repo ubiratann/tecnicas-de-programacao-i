@@ -19,6 +19,7 @@ public class Leitor {
 	 * de Atomicas com base na quantidade de caracterese de formulas atomicas que existem no arrayPsi
 	 */
 	
+
 	public Leitor(String form) {
 		stringPsi = form.toUpperCase();
 		arrayPsi = form.toUpperCase().split("");
@@ -30,7 +31,7 @@ public class Leitor {
 	 * O método criarFormulas usa a estratégia de notação polonesa para gerar as fórmulas de uma string
 	 * 
 	 * */
-	public Formula criarFormulas(String phi) {
+	public Formula criarFormula(String phi) {
 		Formula aux;
 		if (phi.matches("[A-E]")) {
 			aux = new Atomica(phi);
@@ -109,7 +110,7 @@ public class Leitor {
 				// obs: nosso programa ignora quando encontramos ). Os parênteses são apenas
 				// marcações.
 				if (!arrayPsi[i].equals(")")) {
-					aux = criarFormulas(arrayPsi[i]); // cria uma formula atômica ou um conectivo
+					aux = criarFormula(arrayPsi[i]); // cria uma formula atômica ou um conectivo
 					p.push(aux); // empilha o objetivo criado
 				}
 			}
@@ -140,7 +141,7 @@ public class Leitor {
 				i = f;
 			} else {
 				if (!arrayPsi[i].equals(")")) {
-					aux = criarFormulas(arrayPsi[i]);
+					aux = criarFormula(arrayPsi[i]);
 					p.push(aux);
 				}
 			}
