@@ -15,27 +15,18 @@ Este é um projeto que simula uma calculadora de fórmulas lógicas, onde a prin
 	1. JRE 1.8
 	1. Maven 5
 
-### Build 
+### Build com Testes
 	
 Para buildar o projeto basta executar o seguinte comando na pasta raiz do projeto:
 
-```
-
+```bash
+mvn build
 ```
 
 ### Execução
 
-Para executar o binário do projeto com o seguinte comando na pasta raiz:
+Para executar o binário do projeto use o seguinte comando na pasta raiz:
 
-```
-
-```
-
-
-### Testes
-
-Para executar os testes unitários basta executar o seguinte comando na pasta raiz do projeto:
-
-```
-
+```bash
+cd target && java -jar tecnicas-de-programacao-i-0.0.1-SNAPSHOT.jar
 ```
