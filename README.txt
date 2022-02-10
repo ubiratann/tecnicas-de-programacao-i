@@ -1,13 +1,41 @@
-GRUPO #10
-Tema 6: Valoração de fórmulas lógicas
+# Calculadora de Fórmulas lógicas
 
-Alunos responsáveis:
-Mat. 405052 - Aluno: Jose Geovane Soares de Oliveira
-Mat. 397322 - Aluno: Ubiratan de Oliveira Junior
-Mat. 400877 - Aluno: Milton Cassul Miranda
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ubiratann/tecnicas-de-programacao-i/Java%20CI%20with%20Maven)
+![GitHub issues](https://img.shields.io/github/issues-raw/ubiratann/tecnicas-de-programacao-i)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/ubiratann/tecnicas-de-programacao-i?color=purple)
 
-Sobre o tema do projeto desenvolvido:
-A equipe deverá desenvolver um sistema capaz de receber, como entrada, uma fórmula lógica (quantidade de preposições
-possíveis <= 5) e gerar uma tabela verdade a partir dela. Além disso, deverá haver a opção de salvar e excluir a tabela
-gerada com sua respectiva fórmula. O programa deve validar a entrada dada e recusar se a fórmula não estiver bem
-formada
+
+## Descrição
+
+Este é um projeto que simula uma calculadora de fórmulas lógicas, onde a princípio, o usuário insere uma fórmula usando variáveis pré-definidas e então o software calcula a tabela veradade da expressão que foi inserida.
+
+## Uso
+
+- Dependências:
+	1. JRE 1.8
+	1. Maven 5
+
+### Build 
+	
+Para buildar o projeto basta executar o seguinte comando na pasta raiz do projeto:
+
+```
+
+```
+
+### Execução
+
+Para executar o binário do projeto com o seguinte comando na pasta raiz:
+
+```
+
+```
+
+
+### Testes
+
+Para executar os testes unitários basta executar o seguinte comando na pasta raiz do projeto:
+
+```
+
+```
