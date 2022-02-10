@@ -17,6 +17,8 @@ import model.Formula;
 
 
 public class TelaTabela  extends javax.swing.JFrame {
+
+	private static final long serialVersionUID = 1L;
 	String stringPhi;
 	Formula phi;
 	Atomica[] atomica;
@@ -59,13 +61,13 @@ public class TelaTabela  extends javax.swing.JFrame {
           
 		if (atomica != null)
 		{
-			for (int i = atomica.length-1; i >= 0; i--) areaTxt.setText(areaTxt.getText()+ atomica[i].obterValor()+"\t");
-			areaTxt.setText(areaTxt.getText() +phi.obterValor()+ "\n");
+			for (int i = atomica.length-1; i >= 0; i--) areaTxt.setText(areaTxt.getText()+ atomica[i].getValor()+"\t");
+			areaTxt.setText(areaTxt.getText() +phi.getValor()+ "\n");
 		}
 	}
 
 	void incrementarValoresAt() {
-		if (atomica != null) for (Atomica prop : atomica) prop.incrementar();
+		if (atomica != null) for (Atomica prop : atomica) prop.incrementarContador();
 		// incrementa o contador das prop at, uma por uma
 	}
 
@@ -73,10 +75,10 @@ public class TelaTabela  extends javax.swing.JFrame {
 		if (atomica != null)
 			for (Atomica prop : atomica)
 			{
-				if (prop.obterContador() == prop.obterContMax())
+				if (prop.getContador() == prop.getContadorMax())
 				    // troca os valores das prop at cujo esteja com o contador no limite
 				{
-					prop.zerarCont();
+					prop.zerarContador();
 					prop.trocarValor();
 				}
 			}
@@ -86,7 +88,7 @@ public class TelaTabela  extends javax.swing.JFrame {
 		int linha, qtdTotalLinhas;
 			
 		linha = 1;
-		qtdTotalLinhas = 2 * atomica[ atomica.length-1 ].obterContMax();
+		qtdTotalLinhas = 2 * atomica[ atomica.length-1 ].getContadorMax();
 		// o total de linhas da tab verd corresponde a 2 elevado a pos do MSB;
 		
 		mostrarCabecalho();

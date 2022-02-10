@@ -1,6 +1,7 @@
 package model;
 
 public class Atomica extends Formula implements Binario {
+	
 	private String nome;
 	private boolean valor;
 	private int bitPos, cont;
@@ -10,45 +11,65 @@ public class Atomica extends Formula implements Binario {
 		this.valor = false;
 	}
 
+
 	public Atomica (String nome, Boolean bool) {
 		this.nome = nome;
 		this.valor = bool;
 	}
 
-	public boolean obterValor() {
+	public boolean getValor() {
 		return this.valor;
 	}
+	
+	public void setValor(boolean valor) {
+		this.valor = valor;
+	}
 
+	@Override
 	public void escolherBitPos(int pos) {
 		this.bitPos = pos;
 	}
 
-	public void incrementar() {
+	@Override
+	public void incrementarContador() {
 		this.cont++;
 	}
 
-	public int obterContador() {
+	@Override
+	public int getContador() {
 		return this.cont;
 	}
 
-	public void zerarCont() {
+	@Override
+	public void zerarContador() {
 		this.cont = 0;
 	}
 	
-	public int obterContMax() {
+	@Override
+	public int getContadorMax() {
 		return (int)Math.pow(2, bitPos);
 	}
 
+	@Override
 	public void trocarValor() {
 		valor = !valor;
 	}
 
+	@Override
 	public String toString() {
 		return this.nome;
 	}
         
-        public String getNome(){
-            return this.nome;
-        }
+    public String getNome(){
+        return this.nome;
+    }
+    
+    @Override
+    public Formula getEsquerdo() { return null ; } 
+
+	@Override
+	public Formula getDireito() { return null; }
+
+
         
 }
